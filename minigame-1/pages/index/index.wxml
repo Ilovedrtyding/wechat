@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<navigation-bar title="Let's love!!" back="{{true}}" color="black" background="#acF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container" style="width: 750rpx; height: -61rpx; display: flex; box-sizing: border-box">
+    
+    <view class="userinfo" style="width: 589rpx; height: 793rpx; display: flex; box-sizing: border-box; position: relative; left: 0rpx; top: -156rpx">
+    <image class="sticker" src="heart.png" style="width: 741rpx; height: 743rpx; display: block; box-sizing: border-box; left: -73rpx; top: -66rpx"></image>
+    <image class="sticker1" src="heart.png" style="width: 741rpx; height: 713rpx; display: block; box-sizing: border-box; left: -73rpx; top: 404rpx"></image>
+      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+        <view class="nickname-wrapper">
+          <text class="nickname-label">公主：</text>
+          <input type="nickname" class="nickname-input" placeholder="请输入名字" bind:change="onInputChange" />
+        </view>
+
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="cute-text">My dear {{userInfo.nickName}}，</text>
+        <text class="rainbow-text" style="position: relative; left: 0rpx; top: 26rpx">"I'm totally into you."</text>
+
+        <image src="church.jpg" style="font-size: small; width: 741rpx; height: 514rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: 54rpx" alt="wuhu~~" ></image>
+      </block>
+    </view>
+
+    <view class="usermotto">
+      <text class="user-motto" style ="margin:2px">{{motto}}</text>
+      <space><text class="user-motto2">{{motto2}}</text></space>
+    </view>
+
+
+
+  </view>
+</scroll-view>
